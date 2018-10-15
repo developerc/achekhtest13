@@ -1,0 +1,64 @@
+Создание проекта Gradle
+
+File -> New -> Project..
+В отткрывшемся окне выбираем
+слева выбираем Gradle (со слоном)
+справа Additional Libraries and Frameworks выбираем (галочки) Java, Web
+Next , в новом окне GroupId, ArtifactId пишем название проекта achekhtest13
+Next, Next, Finish
+В файл build.gradle к параметру plugins{} добавляем id 'maven'
+там же добавляем библиотеки для Spring, Hibernate, Json
+    //spring
+    compile "org.springframework:spring-core:4.3.18.RELEASE"
+    compile "org.springframework:spring-web:4.3.18.RELEASE"
+    compile "org.springframework:spring-webmvc:4.3.18.RELEASE"
+    compile "org.springframework:spring-orm:4.3.18.RELEASE"
+    compile "org.springframework:spring-jdbc:4.3.18.RELEASE"
+    compile "org.springframework:spring-test:4.3.18.RELEASE"
+    //Hibernate
+    compile "org.hibernate:hibernate-core:5.3.6.Final"
+    compile "org.hibernate:hibernate-entitymanager:5.3.6.Final"
+
+    compile "javax.servlet:javax.servlet-api:3.0.1"
+    compile "jstl:jstl:1.2"
+    compile "org.mariadb.jdbc:mariadb-java-client:2.2.3"
+
+    //Jackson
+    compile "com.fasterxml.jackson.core:jackson-core:2.7.8"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.7.8"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.8"
+
+Теперь File -> Project Structure  в открывшемся окне Project Settings -> Modules
+появляется модуль Spring: achekhtest13 -> achekhtest13_main -> Spring
+закрываем окно
+В дереве проекта на названии проекта achekhtest13 нажимаем ПКМ -> Add Framework Support
+Слева выбираем галочку Hibernate -> OK
+Теперь File -> Project Structure  в открывшемся окне Project Settings -> Modules
+появляется модуль Hibernate: achekhtest13 (нижний) -> Hibernate
+теперь в этом же окне добавляем Hibernate: achekhtest13 (верхний) -> achekhtest13_main -> нажимаем ПКМ
++Add -> выбираем Hibernate
+внизу окна Apply -> OK
+Теперь можно настраивать через классы
+Добавляем папку webapp -> WEB-INF -> views  добавляем index2.jsp
+В каталог src.main.java добавляем package ru.exerciss  в этот package добавляем packages: config, controller, dao,
+entity, service
+в config добавляем application, в него добавляем класс WebConfig
+в config добавляем класс WebAppInitializer
+в controller добавляем класс AppController
+index.jsp перенесем в папку views
+Теперь File -> Project Structure  в открывшемся окне Project Settings -> Modules
+появляется модуль Spring: achekhtest13 -> achekhtest13_main -> Spring  настроен, справа MVC dispatcher initialiser
+servlet context и root context в состоянии autodetected
+настраиваем TomCat:  Add configuration ->
+в открывшемся окне Run/Debug Configuration  слева Templates -> TomCat server -> Local
+справа Application Server -> Configure  выбираем каталог, в котором лежит скачанный TomCat
+у меня /home/saperov/bin/apache-tomcat-8.5.34  -> OK
+в окне Run/Debug Configuration слева вверху жмем +  -> TomCat Server -> Local -> правим Application server:  -> внизу предупреждение Warning: no artifacts marked for deployment -> жмем Fix,
+выбираем artifact for deploy -> Apply -> OK
+теперь TomCat настроен, запускаем Run (зеленый треугольник) открывается окно браузера со страницей.
+
+в папку resources добавляем настроечные файлы hibernate.properties и util.properties  правим название базы, логин, пароль
+в папку application добавляем класс AppConfig
+в папку config добавляем класс HibernateConfig не забываем исправить строку с sessionFactory.setPackagesToScan
+в папку Entity добавляем класс сущности People
+теперь слева закладка Persistence в ней добавляется sessionFactory и в ней сущность с полями.
