@@ -7,8 +7,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.exerciss.dao.PeopleDao;
+import ru.exerciss.dao.RockGroupsDao;
 import ru.exerciss.dao.impl.PeopleDaoImpl;
+import ru.exerciss.dao.impl.RockGroupsDaoImpl;
 import ru.exerciss.entity.People;
+import ru.exerciss.entity.RockGroups;
 
 @Configuration
 @PropertySource(value = "classpath:util.properties")
@@ -29,5 +32,10 @@ public class AppConfig {
     @Bean
     public PeopleDao peopleDao(){
         return new PeopleDaoImpl(People.class);
+    }
+
+    @Bean
+    public RockGroupsDao rockGroupsDao(){
+        return new RockGroupsDaoImpl(RockGroups.class);
     }
 }
