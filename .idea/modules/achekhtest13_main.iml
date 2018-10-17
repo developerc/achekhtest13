@@ -4,17 +4,11 @@
     <facet type="Spring" name="Spring">
       <configuration />
     </facet>
-    <facet type="web" name="Web Gradle : achekhtest13-1.0-SNAPSHOT.war">
-      <configuration>
-        <webroots>
-          <root url="file://$MODULE_DIR$/../../src/main/webapp" relative="/" />
-        </webroots>
-        <sourceRoots />
-      </configuration>
-    </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
-        <datasource-map />
+        <datasource-map>
+          <unit-entry name="sessionFactory" value="d753b7d4-0c52-45ce-8e60-650fe4e15a3c" />
+        </datasource-map>
         <naming-strategy-map />
       </configuration>
     </facet>
