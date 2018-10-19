@@ -9,15 +9,14 @@ public class People {
     private long id;
     private String human;
 
-    @ManyToOne
-    private RockGroups rockGroups;
+    private String groupName;
 
-    public RockGroups getRockGroups() {
-        return rockGroups;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setRockGroups(RockGroups rockGroups) {
-        this.rockGroups = rockGroups;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public long getId() {

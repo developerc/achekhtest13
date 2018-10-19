@@ -11,7 +11,8 @@ public class RockGroups {
     private long id;
     private String rockGroup;
 
-    @OneToMany(mappedBy = "rockGroups", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+//    @OneToMany(mappedBy = "rockGroups", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<People> groupParticipant = new ArrayList<>();
 
     public long getId() {

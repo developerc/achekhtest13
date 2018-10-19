@@ -7,5 +7,4 @@ public class PeopleDaoImpl  extends BasicDaoImpl<People> implements PeopleDao {
     public PeopleDaoImpl(Class<People> entityClass) {
         super(entityClass);
     }
-
 }
