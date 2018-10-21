@@ -1,6 +1,7 @@
 package ru.exerciss.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,10 +11,31 @@ public class SongPlayers {
     private long id;
     private String song;
 
-    @OneToMany
-    private List<People> peopleList;
-    @OneToMany
-    private List<RockGroups> rockGroupsList;
+    /*@OneToMany
+    private List<People> peopleList;*/
+    /*@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<RockGroups> rockGroupsList = new ArrayList<>();*/
+    /*@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "rockGroups_id")
+    private RockGroups rockGroups;
+
+    public RockGroups getRockGroups() {
+        return rockGroups;
+    }
+
+    public void setRockGroups(RockGroups rockGroups) {
+        this.rockGroups = rockGroups;
+    }*/
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<People> peopleList = new ArrayList<>();
+
+    public List<People> getPeopleList() {
+        return peopleList;
+    }
+
+    public void setPeopleList(List<People> peopleList) {
+        this.peopleList = peopleList;
+    }
 
     public String getSong() {
         return song;
@@ -31,19 +53,19 @@ public class SongPlayers {
         this.id = id;
     }
 
-    public List<People> getPeopleList() {
+    /*public List<People> getPeopleList() {
         return peopleList;
     }
 
     public void setPeopleList(List<People> peopleList) {
         this.peopleList = peopleList;
-    }
+    }*/
 
-    public List<RockGroups> getRockGroupsList() {
+    /*public List<RockGroups> getRockGroupsList() {
         return rockGroupsList;
     }
 
     public void setRockGroupsList(List<RockGroups> rockGroupsList) {
         this.rockGroupsList = rockGroupsList;
-    }
+    }*/
 }

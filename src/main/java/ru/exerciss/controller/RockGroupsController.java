@@ -9,7 +9,7 @@ import ru.exerciss.service.RockGroupsService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/rockgroup")
+@RequestMapping("/rockgroups")
 public class RockGroupsController {
     @Autowired
     private RockGroupsService rockGroupsService;

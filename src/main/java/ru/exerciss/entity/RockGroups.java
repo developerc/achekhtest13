@@ -15,6 +15,7 @@ public class RockGroups {
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<People> groupParticipant = new ArrayList<>();
 
+
     public long getId() {
         return id;
     }

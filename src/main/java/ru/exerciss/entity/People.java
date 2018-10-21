@@ -9,7 +9,7 @@ public class People {
     private long id;
     private String human;
 
-    private String groupName;
+    /*private String groupName;
 
     public String getGroupName() {
         return groupName;
@@ -17,6 +17,17 @@ public class People {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }*/
+
+    @ManyToOne
+    RockGroups rockGroups;
+
+    public RockGroups getRockGroups() {
+        return rockGroups;
+    }
+
+    public void setRockGroups(RockGroups rockGroups) {
+        this.rockGroups = rockGroups;
     }
 
     public long getId() {
