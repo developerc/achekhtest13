@@ -26,8 +26,24 @@ public class SongPlayers {
     public void setRockGroups(RockGroups rockGroups) {
         this.rockGroups = rockGroups;
     }*/
+
+    //композитор
+    @ManyToOne
+    private People composer;
+
+
+    //список исполнителей
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<People> peopleList = new ArrayList<>();
+
+
+    public People getComposer() {
+        return composer;
+    }
+
+    public void setComposer(People composer) {
+        this.composer = composer;
+    }
 
     public List<People> getPeopleList() {
         return peopleList;
@@ -53,19 +69,5 @@ public class SongPlayers {
         this.id = id;
     }
 
-    /*public List<People> getPeopleList() {
-        return peopleList;
-    }
 
-    public void setPeopleList(List<People> peopleList) {
-        this.peopleList = peopleList;
-    }*/
-
-    /*public List<RockGroups> getRockGroupsList() {
-        return rockGroupsList;
-    }
-
-    public void setRockGroupsList(List<RockGroups> rockGroupsList) {
-        this.rockGroupsList = rockGroupsList;
-    }*/
 }

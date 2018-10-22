@@ -1,6 +1,9 @@
 package ru.exerciss.entity;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class People {
@@ -19,8 +22,29 @@ public class People {
         this.groupName = groupName;
     }*/
 
+   /* @OneToOne(mappedBy = "composer")
+    private SongPlayers songComposer;*/
+  /* @ManyToOne
+   private SongPlayers songPlayers;*/
+
     @ManyToOne
-    RockGroups rockGroups;
+    private RockGroups rockGroups;
+
+    /*public SongPlayers getSongComposer() {
+        return songComposer;
+    }
+
+    public void setSongComposer(SongPlayers songComposer) {
+        this.songComposer = songComposer;
+    }*/
+
+    /*public SongPlayers getSongPlayers() {
+        return songPlayers;
+    }
+
+    public void setSongPlayers(SongPlayers songPlayers) {
+        this.songPlayers = songPlayers;
+    }*/
 
     public RockGroups getRockGroups() {
         return rockGroups;
