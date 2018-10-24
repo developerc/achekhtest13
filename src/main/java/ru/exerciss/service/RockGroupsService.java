@@ -1,5 +1,6 @@
 package ru.exerciss.service;
 
+import ru.exerciss.dto.RockGroupsDTO;
 import ru.exerciss.entity.RockGroups;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface RockGroupsService {
      *
      * @return all RockGroups
      */
-    List<RockGroups> getAllRockGroups();
+    List<RockGroupsDTO> getAllRockGroups();
 
     /**
      * method for receive specify RockGroups by id

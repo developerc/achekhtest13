@@ -1,5 +1,6 @@
 package ru.exerciss.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class People {
    private SongPlayers songPlayers;*/
 
     @ManyToOne
+//    @JsonIgnore
     private RockGroups rockGroups;
 
     /*public SongPlayers getSongComposer() {

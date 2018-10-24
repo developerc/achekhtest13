@@ -3,6 +3,7 @@ package ru.exerciss.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.exerciss.dto.PeopleDTO;
 import ru.exerciss.entity.People;
 import ru.exerciss.service.PeopleService;
 
@@ -22,7 +23,7 @@ public class PeopleController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<People> getPeople(){
+    public List<PeopleDTO> getPeople(){
         return peopleService.getAllPeople();
     }
 

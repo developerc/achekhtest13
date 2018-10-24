@@ -1,5 +1,6 @@
 package ru.exerciss.service;
 
+import ru.exerciss.dto.PeopleDTO;
 import ru.exerciss.entity.People;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface PeopleService {
      *
      * @return all People
      */
-    List<People> getAllPeople();
+    List<PeopleDTO> getAllPeople();
 
     /**
      * method for receive specify People by id

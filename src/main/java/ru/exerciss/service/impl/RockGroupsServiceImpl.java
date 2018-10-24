@@ -3,6 +3,7 @@ package ru.exerciss.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.exerciss.dao.RockGroupsDao;
+import ru.exerciss.dto.RockGroupsDTO;
 import ru.exerciss.entity.RockGroups;
 import ru.exerciss.service.RockGroupsService;
 
@@ -12,6 +13,8 @@ import java.util.List;
 public class RockGroupsServiceImpl implements RockGroupsService {
     @Autowired
     private RockGroupsDao rockGroupsDao;
+    @Autowired
+    private RockGroupsDTO rockGroupsDTO;
 
     @Override
     public RockGroups addRockGroups(RockGroups rockGroups) {
@@ -19,8 +22,8 @@ public class RockGroupsServiceImpl implements RockGroupsService {
     }
 
     @Override
-    public List<RockGroups> getAllRockGroups() {
-        return rockGroupsDao.getList();
+    public List<RockGroupsDTO> getAllRockGroups() {
+        return rockGroupsDTO.getRockGroupsDTOList(rockGroupsDao.getList());
     }
 
     @Override
