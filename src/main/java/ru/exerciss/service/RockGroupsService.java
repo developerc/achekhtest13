@@ -19,8 +19,8 @@ public interface RockGroupsService {
      *
      * @return all RockGroups
      */
-    List<RockGroupsDTO> getAllRockGroups();
-
+//    List<RockGroupsDTO> getAllRockGroups();
+        List<RockGroups> getAllRockGroups();
     /**
      * method for receive specify RockGroups by id
      *

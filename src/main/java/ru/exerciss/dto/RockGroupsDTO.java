@@ -11,9 +11,9 @@ import java.util.List;
 public class RockGroupsDTO {
     private long id;
     private String rockGroup;
-    private List<PeopleDTO> peopleDTOList = new ArrayList<>();
+//    private List<PeopleDTO> peopleDTOList = new ArrayList<>();
 
-    public List<RockGroupsDTO> getRockGroupsDTOList(List<RockGroups> rockGroupsList){
+    /*public List<RockGroupsDTO> getRockGroupsDTOList(List<RockGroups> rockGroupsList){
         List<RockGroupsDTO> rockGroupsDTOList = new ArrayList<>();
 
         for (RockGroups rockGroups : rockGroupsList){
@@ -36,7 +36,7 @@ public class RockGroupsDTO {
         }
 
         return rockGroupsDTOList;
-    }
+    }*/
 
     public long getId() {
         return id;
@@ -54,11 +54,11 @@ public class RockGroupsDTO {
         this.rockGroup = rockGroup;
     }
 
-    public List<PeopleDTO> getPeopleDTOList() {
+    /*public List<PeopleDTO> getPeopleDTOList() {
         return peopleDTOList;
     }
 
     public void setPeopleDTOList(List<PeopleDTO> peopleDTOList) {
         this.peopleDTOList = peopleDTOList;
-    }
+    }*/
 }

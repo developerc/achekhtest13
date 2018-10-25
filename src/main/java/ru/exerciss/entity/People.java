@@ -29,7 +29,6 @@ public class People {
    private SongPlayers songPlayers;*/
 
     @ManyToOne
-//    @JsonIgnore
     private RockGroups rockGroups;
 
     /*public SongPlayers getSongComposer() {

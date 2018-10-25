@@ -22,9 +22,15 @@ public class RockGroupsServiceImpl implements RockGroupsService {
     }
 
     @Override
+    public List<RockGroups> getAllRockGroups() {
+        return rockGroupsDao.getList();
+    }
+
+    /*@Override
     public List<RockGroupsDTO> getAllRockGroups() {
         return rockGroupsDTO.getRockGroupsDTOList(rockGroupsDao.getList());
-    }
+    }*/
+
 
     @Override
     public RockGroups getRockGroupsById(long id) {

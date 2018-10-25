@@ -15,9 +15,8 @@ public class RockGroups {
     private String rockGroup;
 
 //    @OneToMany(mappedBy = "rockGroups", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-//    @JsonIgnore
-    private List<People> groupParticipant = new ArrayList<>();
+    /*@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<People> groupParticipant = new ArrayList<>();*/
 
 
     public long getId() {
@@ -36,11 +35,11 @@ public class RockGroups {
         this.rockGroup = rockGroup;
     }
 
-    public List<People> getGroupParticipant() {
+    /*public List<People> getGroupParticipant() {
         return groupParticipant;
     }
 
     public void setGroupParticipant(List<People> groupParticipant) {
         this.groupParticipant = groupParticipant;
-    }
+    }*/
 }

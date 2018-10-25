@@ -21,6 +21,7 @@ public class PeopleDTO {
             PeopleDTO peopleDTO = new PeopleDTO();
             peopleDTO.setId(people.getId());
             peopleDTO.setHuman(people.getHuman());
+            peopleDTO.setRockGroups(people.getRockGroups());
 //            peopleDTO.setRockGroups(people.getRockGroups().getRockGroup());
 
             peopleDTOList.add(peopleDTO);

@@ -28,30 +28,30 @@ public class SongPlayers {
     }*/
 
     //композитор
-    @ManyToOne
-    private People composer;
+    /*@ManyToOne
+    private People composer;*/
 
 
     //список исполнителей
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<People> peopleList = new ArrayList<>();
+    /*@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<People> peopleList = new ArrayList<>();*/
 
 
-    public People getComposer() {
+    /*public People getComposer() {
         return composer;
     }
 
     public void setComposer(People composer) {
         this.composer = composer;
-    }
+    }*/
 
-    public List<People> getPeopleList() {
+   /* public List<People> getPeopleList() {
         return peopleList;
     }
 
     public void setPeopleList(List<People> peopleList) {
         this.peopleList = peopleList;
-    }
+    }*/
 
     public String getSong() {
         return song;

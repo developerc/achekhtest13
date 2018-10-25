@@ -23,7 +23,10 @@ public class RockGroupsController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<RockGroupsDTO> getRockGroups(){
+    /*public List<RockGroupsDTO> getRockGroups(){
+        return rockGroupsService.getAllRockGroups();
+    }*/
+    public List<RockGroups> getRockGroups(){
         return rockGroupsService.getAllRockGroups();
     }
 
