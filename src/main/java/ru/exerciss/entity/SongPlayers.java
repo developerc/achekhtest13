@@ -11,6 +11,10 @@ public class SongPlayers {
     private long id;
     private String song;
 
+    //у композиции один композитор
+    private String composer;
+    /*@OneToOne
+    private People composer;*/
     /*@OneToMany
     private List<People> peopleList;*/
     /*@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -52,6 +56,14 @@ public class SongPlayers {
     public void setPeopleList(List<People> peopleList) {
         this.peopleList = peopleList;
     }*/
+
+    public String getComposer() {
+        return composer;
+    }
+
+    public void setComposer(String composer) {
+        this.composer = composer;
+    }
 
     public String getSong() {
         return song;

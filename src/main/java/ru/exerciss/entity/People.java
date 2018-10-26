@@ -13,23 +13,16 @@ public class People {
     private long id;
     private String human;
 
-    /*private String groupName;
-
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }*/
-
-   /* @OneToOne(mappedBy = "composer")
+    /*@OneToOne(mappedBy = "composer")
     private SongPlayers songComposer;*/
   /* @ManyToOne
    private SongPlayers songPlayers;*/
 
     @ManyToOne
     private RockGroups rockGroups;
+
+    @OneToMany
+    private List<SongPlayers> songComposer;
 
     /*public SongPlayers getSongComposer() {
         return songComposer;
@@ -46,6 +39,14 @@ public class People {
     public void setSongPlayers(SongPlayers songPlayers) {
         this.songPlayers = songPlayers;
     }*/
+
+    public List<SongPlayers> getSongComposer() {
+        return songComposer;
+    }
+
+    public void setSongComposer(List<SongPlayers> songComposer) {
+        this.songComposer = songComposer;
+    }
 
     public RockGroups getRockGroups() {
         return rockGroups;
