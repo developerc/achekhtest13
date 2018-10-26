@@ -21,7 +21,7 @@ public class People {
     @ManyToOne
     private RockGroups rockGroups;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<SongPlayers> songComposer;
 
     /*public SongPlayers getSongComposer() {
