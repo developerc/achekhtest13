@@ -13,6 +13,13 @@ public class SongPlayers {
 
     //у композиции один композитор
     private String composer;
+
+    // и один автор стихов
+    private String poet;
+
+    //и много исполнителей
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<People> songInstrumentalist;
     /*@OneToOne
     private People composer;*/
     /*@OneToMany
@@ -56,6 +63,22 @@ public class SongPlayers {
     public void setPeopleList(List<People> peopleList) {
         this.peopleList = peopleList;
     }*/
+
+    public List<People> getSongInstrumentalist() {
+        return songInstrumentalist;
+    }
+
+    public void setSongInstrumentalist(List<People> songInstrumentalist) {
+        this.songInstrumentalist = songInstrumentalist;
+    }
+
+    public String getPoet() {
+        return poet;
+    }
+
+    public void setPoet(String poet) {
+        this.poet = poet;
+    }
 
     public String getComposer() {
         return composer;

@@ -3,6 +3,7 @@ package ru.exerciss.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.exerciss.dao.SongPlayersDao;
+import ru.exerciss.dto.SongPlayersDTO;
 import ru.exerciss.entity.SongPlayers;
 import ru.exerciss.service.SongPlayersService;
 
@@ -12,6 +13,8 @@ import java.util.List;
 public class SongPlayersServiceImpl implements SongPlayersService {
     @Autowired
     private SongPlayersDao songPlayersDao;
+    @Autowired
+    private SongPlayersDTO songPlayersDTO;
 
     @Override
     public SongPlayers addSongPlayers(SongPlayers songPlayers) {
@@ -19,8 +22,8 @@ public class SongPlayersServiceImpl implements SongPlayersService {
     }
 
     @Override
-    public List<SongPlayers> getAllSongPlayers() {
-        return songPlayersDao.getList();
+    public List<SongPlayersDTO> getAllSongPlayers() {
+        return songPlayersDTO.getSongPlayersDTOList(songPlayersDao.getList());
     }
 
     @Override

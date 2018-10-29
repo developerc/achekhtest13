@@ -1,12 +1,22 @@
 package ru.exerciss.dto;
 
 import org.springframework.stereotype.Component;
+import ru.exerciss.entity.SongPlayers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class SongPlayersDTO {
     private long id;
     private String song;
     private String composer;
+
+    public List<SongPlayersDTO> getSongPlayersDTOList(List<SongPlayers> songPlayersList){
+        List<SongPlayersDTO> songPlayersDTOList = new ArrayList<>();
+
+        return songPlayersDTOList;
+    }
 
     public long getId() {
         return id;

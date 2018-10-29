@@ -1,8 +1,5 @@
 package ru.exerciss.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,39 +10,21 @@ public class People {
     private long id;
     private String human;
 
-    /*@OneToOne(mappedBy = "composer")
-    private SongPlayers songComposer;*/
-  /* @ManyToOne
-   private SongPlayers songPlayers;*/
-
+    //несколько людей играют в одной группе
     @ManyToOne
     private RockGroups rockGroups;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<SongPlayers> songComposer;
+    //разные люди исполняют разные композиции
+    @ManyToMany(mappedBy = "songInstrumentalist",fetch = FetchType.EAGER)
+    private List<SongPlayers> songItems;
 
-    /*public SongPlayers getSongComposer() {
-        return songComposer;
+    //getters and setters
+    public List<SongPlayers> getSongItems() {
+        return songItems;
     }
 
-    public void setSongComposer(SongPlayers songComposer) {
-        this.songComposer = songComposer;
-    }*/
-
-    /*public SongPlayers getSongPlayers() {
-        return songPlayers;
-    }
-
-    public void setSongPlayers(SongPlayers songPlayers) {
-        this.songPlayers = songPlayers;
-    }*/
-
-    public List<SongPlayers> getSongComposer() {
-        return songComposer;
-    }
-
-    public void setSongComposer(List<SongPlayers> songComposer) {
-        this.songComposer = songComposer;
+    public void setSongItems(List<SongPlayers> songItems) {
+        this.songItems = songItems;
     }
 
     public RockGroups getRockGroups() {

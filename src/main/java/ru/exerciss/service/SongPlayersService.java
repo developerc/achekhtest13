@@ -1,5 +1,6 @@
 package ru.exerciss.service;
 
+import ru.exerciss.dto.SongPlayersDTO;
 import ru.exerciss.entity.SongPlayers;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface SongPlayersService {
      *
      * @return all SongPlayers
      */
-    List<SongPlayers> getAllSongPlayers();
+    List<SongPlayersDTO> getAllSongPlayers();
 
     /**
      * method for receive specify SongPlayers by id
