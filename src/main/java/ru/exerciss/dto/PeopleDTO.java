@@ -13,12 +13,14 @@ public class PeopleDTO {
     private long id;
     private String human;
     private RockGroups rockGroups;
-    private List<SongPlayers> songPlayersList;
+    private List<SongPlayersDTO> songPlayersList;
 
     public List<PeopleDTO> getPeopleDTOList(List<People> peopleList){
         List<PeopleDTO> peopleDTOList = new ArrayList<>();
 
         for (People people : peopleList){
+            songPlayersList = new ArrayList<>();
+
             PeopleDTO peopleDTO = new PeopleDTO();
             peopleDTO.setId(people.getId());
             peopleDTO.setHuman(people.getHuman());
@@ -34,18 +36,26 @@ public class PeopleDTO {
 //           peopleDTO.setSongPlayersList(people.getSongComposer());
             /*peopleDTO.setSongPlayersList(people.getSongComposer());
             peopleDTO.setSongPlayersList(people.getSongPoet());*/
-            peopleDTO.setSongPlayersList(people.getSongItems());
+//            peopleDTO.setSongPlayersList(people.getSongItems());
+            for (SongPlayers songPlayers : people.getSongItems()){
+                SongPlayersDTO songPlayersDTO = new SongPlayersDTO();
+                songPlayersDTO.setId(songPlayers.getId());
+                songPlayersDTO.setSong(songPlayers.getSong());
+                songPlayersDTO.setComposer(songPlayers.getComposer());
+                songPlayersDTO.setPoet(songPlayers.getPoet());
+            }
+
             peopleDTOList.add(peopleDTO);
         }
 
         return peopleDTOList;
     }
 
-    public List<SongPlayers> getSongPlayersList() {
+    public List<SongPlayersDTO> getSongPlayersList() {
         return songPlayersList;
     }
 
-    public void setSongPlayersList(List<SongPlayers> songPlayersList) {
+    public void setSongPlayersList(List<SongPlayersDTO> songPlayersList) {
         this.songPlayersList = songPlayersList;
     }
 
