@@ -43,8 +43,9 @@ public class PeopleDTO {
                 songPlayersDTO.setSong(songPlayers.getSong());
                 songPlayersDTO.setComposer(songPlayers.getComposer());
                 songPlayersDTO.setPoet(songPlayers.getPoet());
+                songPlayersList.add(songPlayersDTO);
             }
-
+            peopleDTO.setSongPlayersList(songPlayersList);
             peopleDTOList.add(peopleDTO);
         }
 

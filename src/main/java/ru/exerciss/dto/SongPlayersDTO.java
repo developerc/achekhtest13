@@ -25,6 +25,7 @@ public class SongPlayersDTO {
             songPlayersDTO.setId(songPlayers.getId());
             songPlayersDTO.setSong(songPlayers.getSong());
             songPlayersDTO.setComposer(songPlayers.getComposer());
+            songPlayersDTO.setPoet(songPlayers.getPoet());
             for (People people : songPlayers.getSongInstrumentalist()){
                 PeopleDTO peopleDTO = new PeopleDTO();
                 peopleDTO.setId(people.getId());

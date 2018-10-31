@@ -20,6 +20,13 @@ public class SongPlayers {
     //и много исполнителей
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<People> songInstrumentalist;
+
+    //песня может содержаться в разных альбомах
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Album> albumList;
+
+
+
     /*@OneToOne
     private People composer;*/
     /*@OneToMany
@@ -63,6 +70,14 @@ public class SongPlayers {
     public void setPeopleList(List<People> peopleList) {
         this.peopleList = peopleList;
     }*/
+
+    public List<Album> getAlbumList() {
+        return albumList;
+    }
+
+    public void setAlbumList(List<Album> albumList) {
+        this.albumList = albumList;
+    }
 
     public List<People> getSongInstrumentalist() {
         return songInstrumentalist;

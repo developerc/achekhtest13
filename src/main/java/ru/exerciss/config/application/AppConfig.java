@@ -6,12 +6,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import ru.exerciss.dao.AlbumDao;
 import ru.exerciss.dao.PeopleDao;
 import ru.exerciss.dao.RockGroupsDao;
 import ru.exerciss.dao.SongPlayersDao;
+import ru.exerciss.dao.impl.AlbumDaoImpl;
 import ru.exerciss.dao.impl.PeopleDaoImpl;
 import ru.exerciss.dao.impl.RockGroupsDaoImpl;
 import ru.exerciss.dao.impl.SongPlayersDaoImpl;
+import ru.exerciss.entity.Album;
 import ru.exerciss.entity.People;
 import ru.exerciss.entity.RockGroups;
 import ru.exerciss.entity.SongPlayers;
@@ -45,5 +48,10 @@ public class AppConfig {
     @Bean
     public SongPlayersDao songPlayersDao(){
         return new SongPlayersDaoImpl(SongPlayers.class);
+    }
+
+    @Bean
+    public AlbumDao albumDao(){
+        return new AlbumDaoImpl(Album.class);
     }
 }
