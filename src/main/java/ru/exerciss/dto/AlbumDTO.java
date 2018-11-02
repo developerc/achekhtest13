@@ -27,7 +27,10 @@ public class AlbumDTO {
                 SongPlayersDTO songPlayersDTO = new SongPlayersDTO();
                 songPlayersDTO.setId(songPlayers.getId());
                 songPlayersDTO.setSong(songPlayers.getSong());
+                songPlayersList.add(songPlayersDTO);
             }
+            albumDTO.setSongPlayersList(songPlayersList);
+            albumDTOList.add(albumDTO);
         }
 
         return albumDTOList;

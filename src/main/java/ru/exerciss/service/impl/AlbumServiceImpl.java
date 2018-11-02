@@ -15,7 +15,6 @@ public class AlbumServiceImpl implements AlbumService {
     private AlbumDao albumDao;
     @Autowired
     private AlbumDTO albumDTO;
-
     @Override
     public Album addAlbum(Album album) {
         return albumDao.create(album);
@@ -24,7 +23,9 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public List<AlbumDTO> getAllAlbum() {
         return albumDTO.getAlbumDTOList(albumDao.getList());
+//        return albumDao.getList();
     }
+
 
     @Override
     public Album getAlbumById(long id) {

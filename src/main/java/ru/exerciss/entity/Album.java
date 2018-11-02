@@ -11,7 +11,8 @@ public class Album {
     private String album;
     //один альбом содержит несколько песен
     //и в разных альбомах может быть одинаковая песня
-    @ManyToMany(mappedBy = "albumList",fetch = FetchType.EAGER)
+//    @ManyToMany(mappedBy = "albumList"fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<SongPlayers> songPlayersList;
 
     public long getId() {

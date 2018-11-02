@@ -24,9 +24,9 @@ public class SongPlayers {
 
     //песня может содержаться в разных альбомах
     //и альбом содержит разные песни
-    @ManyToMany(cascade = CascadeType.ALL)
+    /*@ManyToMany(mappedBy = "songPlayersList")
     private List<Album> albumList;
-
+*/
 
 
     /*@OneToOne
@@ -73,13 +73,13 @@ public class SongPlayers {
         this.peopleList = peopleList;
     }*/
 
-    public List<Album> getAlbumList() {
+    /*public List<Album> getAlbumList() {
         return albumList;
     }
 
     public void setAlbumList(List<Album> albumList) {
         this.albumList = albumList;
-    }
+    }*/
 
     public List<People> getSongInstrumentalist() {
         return songInstrumentalist;
