@@ -18,10 +18,12 @@ public class SongPlayers {
     private String poet;
 
     //и много исполнителей
+    //исполнители могут исполнять разные песни
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<People> songInstrumentalist;
 
     //песня может содержаться в разных альбомах
+    //и альбом содержит разные песни
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Album> albumList;
 

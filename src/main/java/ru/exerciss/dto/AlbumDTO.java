@@ -2,6 +2,7 @@ package ru.exerciss.dto;
 
 import org.springframework.stereotype.Component;
 import ru.exerciss.entity.Album;
+import ru.exerciss.entity.SongPlayers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,20 @@ public class AlbumDTO {
 
     public List<AlbumDTO> getAlbumDTOList(List<Album> albumList){
         List<AlbumDTO> albumDTOList = new ArrayList<>();
+
+        for (Album album : albumList){
+            songPlayersList = new ArrayList<>();
+
+            AlbumDTO albumDTO = new AlbumDTO();
+            albumDTO.setId(album.getId());
+            albumDTO.setAlbum(album.getAlbum());
+
+            for (SongPlayers songPlayers : album.getSongPlayersList()){
+                SongPlayersDTO songPlayersDTO = new SongPlayersDTO();
+                songPlayersDTO.setId(songPlayers.getId());
+                songPlayersDTO.setSong(songPlayers.getSong());
+            }
+        }
 
         return albumDTOList;
     }
