@@ -14,6 +14,27 @@ public class PeopleDTO {
     private String human;
     private RockGroups rockGroups;
     private List<SongPlayersDTO> songPlayersList;
+    private SongPlayersDTO songPlayersDTO;
+
+    public PeopleDTO getPeopleDTObyId(People people){
+        songPlayersList = new ArrayList<>();
+
+        PeopleDTO peopleDTO = new PeopleDTO();
+        peopleDTO.setId(people.getId());
+        peopleDTO.setHuman(people.getHuman());
+        peopleDTO.setRockGroups(people.getRockGroups());
+        for (SongPlayers songPlayers : people.getSongItems()){
+            SongPlayersDTO songPlayersDTO = new SongPlayersDTO();
+            songPlayersDTO.setId(songPlayers.getId());
+            songPlayersDTO.setSong(songPlayers.getSong());
+            songPlayersDTO.setComposer(songPlayers.getComposer());
+            songPlayersDTO.setPoet(songPlayers.getPoet());
+            songPlayersList.add(songPlayersDTO);
+        }
+        peopleDTO.setSongPlayersList(songPlayersList);
+
+        return peopleDTO;
+    }
 
     public List<PeopleDTO> getPeopleDTOList(List<People> peopleList){
         List<PeopleDTO> peopleDTOList = new ArrayList<>();
@@ -25,18 +46,7 @@ public class PeopleDTO {
             peopleDTO.setId(people.getId());
             peopleDTO.setHuman(people.getHuman());
             peopleDTO.setRockGroups(people.getRockGroups());
-//            peopleDTO.setRockGroups(people.getRockGroups().getRockGroup());
-//            List<SongPlayers> songPlayersList = new ArrayList<>();
-            /*for (SongPlayers songPlayers : people.getSongComposer()){
-                songPlayersList.add(songPlayers);
-            }
-            peopleDTO.setSongPlayersList(songPlayersList);*/
-           /*songPlayersList = people.getSongComposer();
-           peopleDTO.setSongPlayersList(songPlayersList);*/
-//           peopleDTO.setSongPlayersList(people.getSongComposer());
-            /*peopleDTO.setSongPlayersList(people.getSongComposer());
-            peopleDTO.setSongPlayersList(people.getSongPoet());*/
-//            peopleDTO.setSongPlayersList(people.getSongItems());
+
             for (SongPlayers songPlayers : people.getSongItems()){
                 SongPlayersDTO songPlayersDTO = new SongPlayersDTO();
                 songPlayersDTO.setId(songPlayers.getId());
@@ -50,6 +60,14 @@ public class PeopleDTO {
         }
 
         return peopleDTOList;
+    }
+
+    public SongPlayersDTO getSongPlayersDTO() {
+        return songPlayersDTO;
+    }
+
+    public void setSongPlayersDTO(SongPlayersDTO songPlayersDTO) {
+        this.songPlayersDTO = songPlayersDTO;
     }
 
     public List<SongPlayersDTO> getSongPlayersList() {

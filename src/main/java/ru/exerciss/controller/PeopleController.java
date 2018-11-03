@@ -29,7 +29,7 @@ public class PeopleController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public People getPeopleById(@PathVariable(value = "id") String id){
+    public PeopleDTO getPeopleById(@PathVariable(value = "id") String id){
         // exception
         return peopleService.getPeopleById(Long.parseLong(id));
     }

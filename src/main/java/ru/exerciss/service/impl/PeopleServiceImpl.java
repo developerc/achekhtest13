@@ -27,8 +27,8 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public People getPeopleById(long id) {
-        return peopleDao.getById(id);
+    public PeopleDTO getPeopleById(long id) {
+        return peopleDTO.getPeopleDTObyId(peopleDao.getById(id));
     }
 
     @Override

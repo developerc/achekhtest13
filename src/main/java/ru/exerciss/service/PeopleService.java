@@ -27,7 +27,7 @@ public interface PeopleService {
      * @param id = uniq People id
      * @return specify People by id
      */
-    People getPeopleById(long id);
+    PeopleDTO getPeopleById(long id);
 
     /**
      * method for People delete
