@@ -29,7 +29,7 @@ public class SongPlayersController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public SongPlayers getSongPlayersById(@PathVariable(value = "id") String id){
+    public SongPlayersDTO getSongPlayersById(@PathVariable(value = "id") String id){
         // exception
         return songPlayersService.getSongPlayersById(Long.parseLong(id));
     }

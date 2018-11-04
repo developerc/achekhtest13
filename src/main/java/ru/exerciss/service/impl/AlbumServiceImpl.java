@@ -28,8 +28,8 @@ public class AlbumServiceImpl implements AlbumService {
 
 
     @Override
-    public Album getAlbumById(long id) {
-        return albumDao.getById(id);
+    public AlbumDTO getAlbumById(long id) {
+        return albumDTO.getAlbumDTObyId(albumDao.getById(id));
     }
 
     @Override

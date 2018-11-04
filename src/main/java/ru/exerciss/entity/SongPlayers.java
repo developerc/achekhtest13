@@ -17,69 +17,21 @@ public class SongPlayers {
     // и один автор стихов
     private String poet;
 
+    //песня содержится в альбоме
+    private String album;
+
     //и много исполнителей
     //исполнители могут исполнять разные песни
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<People> songInstrumentalist;
 
-    //песня может содержаться в разных альбомах
-    //и альбом содержит разные песни
-    /*@ManyToMany(mappedBy = "songPlayersList")
-    private List<Album> albumList;
-*/
-
-
-    /*@OneToOne
-    private People composer;*/
-    /*@OneToMany
-    private List<People> peopleList;*/
-    /*@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<RockGroups> rockGroupsList = new ArrayList<>();*/
-    /*@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "rockGroups_id")
-    private RockGroups rockGroups;
-
-    public RockGroups getRockGroups() {
-        return rockGroups;
+    public String getAlbum() {
+        return album;
     }
 
-    public void setRockGroups(RockGroups rockGroups) {
-        this.rockGroups = rockGroups;
-    }*/
-
-    //композитор
-    /*@ManyToOne
-    private People composer;*/
-
-
-    //список исполнителей
-    /*@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<People> peopleList = new ArrayList<>();*/
-
-
-    /*public People getComposer() {
-        return composer;
+    public void setAlbum(String album) {
+        this.album = album;
     }
-
-    public void setComposer(People composer) {
-        this.composer = composer;
-    }*/
-
-   /* public List<People> getPeopleList() {
-        return peopleList;
-    }
-
-    public void setPeopleList(List<People> peopleList) {
-        this.peopleList = peopleList;
-    }*/
-
-    /*public List<Album> getAlbumList() {
-        return albumList;
-    }
-
-    public void setAlbumList(List<Album> albumList) {
-        this.albumList = albumList;
-    }*/
 
     public List<People> getSongInstrumentalist() {
         return songInstrumentalist;

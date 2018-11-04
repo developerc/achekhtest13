@@ -27,7 +27,7 @@ public interface AlbumService {
      * @param id = uniq Album id
      * @return specify Album by id
      */
-    Album getAlbumById(long id);
+    AlbumDTO getAlbumById(long id);
 
     /**
      * method for Album delete

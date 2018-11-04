@@ -9,9 +9,8 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String album;
+
     //один альбом содержит несколько песен
-    //и в разных альбомах может быть одинаковая песня
-//    @ManyToMany(mappedBy = "albumList"fetch = FetchType.EAGER)
     @OneToMany(fetch = FetchType.EAGER)
     private List<SongPlayers> songPlayersList;
 

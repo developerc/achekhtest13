@@ -13,6 +13,24 @@ public class AlbumDTO {
     private String album;
     private List<SongPlayersDTO> songPlayersList;
 
+    public AlbumDTO getAlbumDTObyId(Album album){
+        songPlayersList = new ArrayList<>();
+
+        AlbumDTO albumDTO = new AlbumDTO();
+        albumDTO.setId(album.getId());
+        albumDTO.setAlbum(album.getAlbum());
+
+        for (SongPlayers songPlayers : album.getSongPlayersList()){
+            SongPlayersDTO songPlayersDTO = new SongPlayersDTO();
+            songPlayersDTO.setId(songPlayers.getId());
+            songPlayersDTO.setSong(songPlayers.getSong());
+            songPlayersList.add(songPlayersDTO);
+        }
+        albumDTO.setSongPlayersList(songPlayersList);
+
+        return albumDTO;
+    }
+
     public List<AlbumDTO> getAlbumDTOList(List<Album> albumList){
         List<AlbumDTO> albumDTOList = new ArrayList<>();
 

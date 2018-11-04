@@ -29,7 +29,7 @@ public class AlbumController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Album getAlbumById(@PathVariable(value = "id") String id){
+    public AlbumDTO getAlbumById(@PathVariable(value = "id") String id){
         // exception
         return albumService.getAlbumById(Long.parseLong(id));
     }

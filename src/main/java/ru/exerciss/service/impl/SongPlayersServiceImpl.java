@@ -27,8 +27,8 @@ public class SongPlayersServiceImpl implements SongPlayersService {
     }
 
     @Override
-    public SongPlayers getSongPlayersById(long id) {
-        return songPlayersDao.getById(id);
+    public SongPlayersDTO getSongPlayersById(long id) {
+        return songPlayersDTO.getSongPlayersDTObyId(songPlayersDao.getById(id));
     }
 
     @Override

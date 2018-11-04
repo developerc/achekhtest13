@@ -14,7 +14,7 @@ public class PeopleDTO {
     private String human;
     private RockGroups rockGroups;
     private List<SongPlayersDTO> songPlayersList;
-    private SongPlayersDTO songPlayersDTO;
+//    private SongPlayersDTO songPlayersDTO;
 
     public PeopleDTO getPeopleDTObyId(People people){
         songPlayersList = new ArrayList<>();
@@ -62,14 +62,14 @@ public class PeopleDTO {
         return peopleDTOList;
     }
 
-    public SongPlayersDTO getSongPlayersDTO() {
+    /*public SongPlayersDTO getSongPlayersDTO() {
         return songPlayersDTO;
     }
 
     public void setSongPlayersDTO(SongPlayersDTO songPlayersDTO) {
         this.songPlayersDTO = songPlayersDTO;
     }
-
+*/
     public List<SongPlayersDTO> getSongPlayersList() {
         return songPlayersList;
     }

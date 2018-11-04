@@ -27,7 +27,7 @@ public interface SongPlayersService {
      * @param id = uniq SongPlayers id
      * @return specify SongPlayers by id
      */
-    SongPlayers getSongPlayersById(long id);
+    SongPlayersDTO getSongPlayersById(long id);
 
     /**
      * method for SongPlayers delete
