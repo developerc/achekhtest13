@@ -9,6 +9,297 @@
   <script>
       var service = 'http://localhost:8080/';
       var Data = {};
+      var peopleArr = [];
+      var pplNumArr = [];
+      var rockGroupArr = [];
+      var rgNumArr = [];
+      var songPlayersArr = [];
+      var albumArr = [];
+
+      var AddTestData = function () {
+          var j;
+          var k;
+          var i;
+          console.log('AddTestData');
+          //добавляем людей
+          for (i = 0; i < 12; i++){
+              AddPeople(i);
+          }
+          //получаем список людей
+          GetPeopleArr();
+          //добавляем композиции
+          console.log('------ AddSongPlayers --------');
+          i = 0;
+          j = 0;
+          while (i < 30){
+              for (k = 0; k < 3; k++){
+                  pplNumArr[i] = j;
+                  i++;
+              }
+              j++;
+          }
+          for (i = 0; i < 30; i++){
+              AddSongPlayers(i);
+          }
+          //добавляем рок группы
+          i = 0;
+          j = 0;
+          while (i < 12){
+              for (k = 0; k < 2; k++){
+                  rgNumArr[i] = j;
+                  i++;
+              }
+              j++;
+          }
+           console.log('rgNumArr=' + rgNumArr);
+          for (i = 0; i < 6; i++){
+              AddRockGroups(i);
+          }
+          //получаем список рок групп
+          GetRockGroupsArr();
+          //привязываем каждому человеку рок группу
+          console.log('------ UpdPeopleRockGroup --------');
+          for (i = 0; i < 12; i++) {
+              UpdPeopleRockGroup(i);
+          }
+          //добавляем альбомы
+          console.log('------ AddAlbum --------');
+          for (i = 0; i < 10; i++){
+              AddAlbum(i);
+          }
+          //получаем композиции
+          GetSongPlayersArr();
+          //получаем альбомы
+          GetAlbumArr();
+          //к альбомам привязываем композиции
+          console.log('------ UpdAlbum --------');
+          for (i = 0; i < 10; i++) {
+              UpdAlbum(i);
+          }
+      };
+
+      var UpdAlbum = function (i) {
+          var albumObj = albumArr[i];
+          var spArr = [];
+          var songPlayersObj0 = songPlayersArr[i*3];
+          spArr.push(songPlayersObj0);
+          var songPlayersObj1 = songPlayersArr[i*3 + 1];
+          spArr.push(songPlayersObj1);
+          var songPlayersObj2 = songPlayersArr[i*3 + 2];
+          spArr.push(songPlayersObj2);
+          albumObj.songPlayersList = spArr;
+          // console.log(albumObj);
+          $.ajax({
+              type: 'PUT',
+              url: service + "album/upd",
+              contentType: 'application/json;charset=utf-8',
+              data: JSON.stringify(albumObj),
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  albumObj = JSON.parse(stringData);
+                  console.log(albumObj);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
+      var GetAlbumArr = function () {
+          $.ajax({
+              type: 'GET',
+              url: service + 'album/all',
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  albumArr = JSON.parse(stringData);
+                  console.log(albumArr);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
+      var GetSongPlayersArr = function () {
+          $.ajax({
+              type: 'GET',
+              url: service + 'songplayers/all',
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  songPlayersArr = JSON.parse(stringData);
+                  console.log(songPlayersArr);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
+      var AddAlbum = function (i) {
+            var album = "Album" + i;
+            var albumObj = {
+                'album':album
+            };
+          $.ajax({
+              type: 'POST',
+              url: service + "album/add",
+              contentType: 'application/json;charset=utf-8',
+              data: JSON.stringify(albumObj),
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  Data = JSON.parse(stringData);
+                  console.log(Data);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
+      var UpdPeopleRockGroup = function (i) {
+          var peopleObj = peopleArr[i];
+          var rgNum = rgNumArr[i];
+          peopleObj.rockGroups = rockGroupArr[rgNum];
+          // console.log(peopleObj);
+          $.ajax({
+              type: 'PUT',
+              url: service + "people/upd",
+              contentType: 'application/json;charset=utf-8',
+              data: JSON.stringify(peopleObj),
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  peopleObj = JSON.parse(stringData);
+                  console.log(peopleObj);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
+      var GetRockGroupsArr = function () {
+          $.ajax({
+              type: 'GET',
+              url: service + 'rockgroups/all',
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  rockGroupArr = JSON.parse(stringData);
+                  console.log(rockGroupArr);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
+      var AddRockGroups = function (i) {
+          var rockGroup = "Group" + i;
+        var rockGroupsObj = {
+          'rockGroup':rockGroup
+        };
+          $.ajax({
+              type: 'POST',
+              url: service + "rockgroups/add",
+              contentType: 'application/json;charset=utf-8',
+              data: JSON.stringify(rockGroupsObj),
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  Data = JSON.parse(stringData);
+                  console.log(Data);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+      
+      var AddSongPlayers = function (i) {
+        var songPlayersSong = "Song" + i;
+        var songPlayersComposer = "Human" + pplNumArr[i];
+        var songPlayersPoet = "Human" + (pplNumArr[i] + 1);
+        var songPlayersAlbum = "Album" + pplNumArr[i];
+        var songPlayersInstrumentalistObj1 = peopleArr[pplNumArr[i] + 1];
+        var songPlayersInstrumentalistObj2 = peopleArr[pplNumArr[i] + 2];
+          var songPlayersObj = {
+              'song':songPlayersSong,
+              'composer':songPlayersComposer,
+              'poet':songPlayersPoet,
+              'album':songPlayersAlbum,
+              'songInstrumentalist':[songPlayersInstrumentalistObj1, songPlayersInstrumentalistObj2]
+          };
+          $.ajax({
+              type: 'POST',
+              url: service + "songplayers/add",
+              contentType: 'application/json;charset=utf-8',
+              data: JSON.stringify(songPlayersObj),
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  Data = JSON.parse(stringData);
+                  console.log(Data);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+
+      };
+
+      var GetPeopleArr = function () {
+          $.ajax({
+              type: 'GET',
+              url: service + 'people/all',
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  peopleArr = JSON.parse(stringData);
+                  console.log(peopleArr);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+      
+      var AddPeople = function (i) {
+          var humanName = "Human" + i;
+          var peopleObj = {
+              'human':humanName
+          };
+          $.ajax({
+              type: 'POST',
+              url: service + "people/add",
+              contentType: 'application/json;charset=utf-8',
+              data: JSON.stringify(peopleObj),
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var output = '';
+                  var stringData = JSON.stringify(result);
+                  Data = JSON.parse(stringData);
+                  console.log(Data);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
 
       var ShowAllRockGroups = function () {
           console.log('ShowAllRockGroups');
@@ -167,9 +458,9 @@
     </div>
     <div class="panel-body">
       <form class="form-inline">
+        <button type="button" onclick="AddTestData()">Add test data</button>
         <button type="button" onclick="ShowAllAlbums()">Show all albums</button>
         <button type="button" onclick="ShowAllSongPlayers()">Show all songplayers</button>
-
         <button type="button" onclick="ShowAllPeople()">Show all people</button>
         <button type="button" onclick="ShowAllRockGroups()">Show all rock groups</button>
       </form>
