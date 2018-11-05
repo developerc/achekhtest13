@@ -6,6 +6,27 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
   <body>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>List Albums, songs, rock groups</strong>
+    </div>
+    <div class="panel-body">
+      <form class="form-inline">
+        <button type="button" onclick="AddTestData()">Add test data</button>
+        <button type="button" onclick="ShowAllAlbums()">Show all albums</button>
+        <button type="button" onclick="ShowAllSongPlayers()">Show all songplayers</button>
+        <button type="button" onclick="ShowAllPeople()">Show all people</button>
+        <button type="button" onclick="ShowAllRockGroups()">Show all rock groups</button>
+      </form>
+      <form class="form-inline">
+        <label>Find by Song:</label>
+        <select id="songSelect"></select>
+        <button type="button" onclick="FindAllInstrumentalist()">Find all instrumentalist</button>
+        <button type="button" onclick="FindAllAlbums()">Find all albums</button>
+      </form>
+    </div>
+    <div class="panel-body" id="tableAlbums"></div>
+  </div>
   <script>
       var service = 'http://localhost:8080/';
       var Data = {};
@@ -15,6 +36,46 @@
       var rgNumArr = [];
       var songPlayersArr = [];
       var albumArr = [];
+
+      var FindAllInstrumentalist = function () {
+          var songSelect = document.getElementById('songSelect');
+          var songPlayerObj = {};
+          var songInstrumentalistArr = [];
+          $.ajax({
+              type: 'GET',
+              url: service + 'songplayers/getbysong/' + songSelect.value,
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var output = '';
+                  var stringData = JSON.stringify(result);
+                  var arrData = JSON.parse(stringData);
+                  console.log(arrData);
+                  output+= '<table class="table-row-cell" border="1">';
+                  output+= '<tr>';
+                  output+= '<th>song</'+'th>';
+                  output+= '<th>instrumentalist</'+'th>';
+                  output+= '</' +'tr>';
+
+                  for (i in arrData) {
+                      songPlayerObj = arrData[i];
+                      songInstrumentalistArr = songPlayerObj.songInstrumentalistList;
+                      for (k in songInstrumentalistArr){
+                          output += '<tr>';
+                          output += '<th>' + songSelect.value + '</' + 'th>';
+                          output += '<th>' + songInstrumentalistArr[k].human + '</' + 'th>';
+                          output += '</' + 'tr>';
+                      }
+                  }
+
+                  output+= '</' +'table>';
+                  $('#tableAlbums').html(output);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
 
       var AddTestData = function () {
           var j;
@@ -76,6 +137,8 @@
           for (i = 0; i < 10; i++) {
               UpdAlbum(i);
           }
+          //заполняем выпадающий список
+          SetSelectOptions();
       };
 
       var UpdAlbum = function (i) {
@@ -451,21 +514,31 @@
               }
           });
       };
+
+      var SetSelectOptions = function (){
+          console.log('SetSelectOptions');
+          $.ajax({
+              type: 'GET',
+              url: service + 'songplayers/all',
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  // console.log(stringData);
+                  var arrData = JSON.parse(stringData);
+                  for (i in arrData) {
+                      var songPlayersObj = {};
+                      songPlayersObj = arrData[i];
+                      $("#songSelect").append($('<'+'option value'+'="'+songPlayersObj.song+'">'+songPlayersObj.song+'</option>'))
+                  }
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
+      SetSelectOptions();
   </script>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <strong>List Albums, songs, rock groups</strong>
-    </div>
-    <div class="panel-body">
-      <form class="form-inline">
-        <button type="button" onclick="AddTestData()">Add test data</button>
-        <button type="button" onclick="ShowAllAlbums()">Show all albums</button>
-        <button type="button" onclick="ShowAllSongPlayers()">Show all songplayers</button>
-        <button type="button" onclick="ShowAllPeople()">Show all people</button>
-        <button type="button" onclick="ShowAllRockGroups()">Show all rock groups</button>
-      </form>
-    </div>
-    <div class="panel-body" id="tableAlbums"></div>
-  </div>
   </body>
 </html>

@@ -34,6 +34,14 @@ public class SongPlayersController {
         return songPlayersService.getSongPlayersById(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/getbysong/{song}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public List<SongPlayersDTO> getSongPlayersBySong(@PathVariable(value = "song") String song){
+        // exception
+//        return songPlayersService.getSongPlayersById(Long.parseLong(id));
+        return songPlayersService.getSongPlayersBySong(song);
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
     @ResponseBody
     public SongPlayers deleteSongPlayers(@RequestParam(value = "id") String id) {

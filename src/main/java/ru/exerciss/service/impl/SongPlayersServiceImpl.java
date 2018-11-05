@@ -40,4 +40,9 @@ public class SongPlayersServiceImpl implements SongPlayersService {
     public SongPlayers updSongPlayers(SongPlayers songPlayers) {
         return songPlayersDao.update(songPlayers);
     }
+
+    @Override
+    public List<SongPlayersDTO> getSongPlayersBySong(String song) {
+        return songPlayersDTO.getSongPlayersDTOList(songPlayersDao.getSongPlayersBySong(song));
+    }
 }

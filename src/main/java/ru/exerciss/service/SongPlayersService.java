@@ -44,4 +44,11 @@ public interface SongPlayersService {
      * @return updated SongPlayers
      */
     SongPlayers updSongPlayers(SongPlayers songPlayers);
+
+    /**
+     * method for receiving all SongPlayers by song
+     *
+     * @return all SongPlayers by song
+     */
+    List<SongPlayersDTO> getSongPlayersBySong(String song);
 }
