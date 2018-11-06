@@ -11,4 +11,11 @@ public interface SongPlayersDao extends BasicDao<SongPlayers> {
      *@return List SongPlayers  with success parameters
      * **/
     List<SongPlayers> getSongPlayersBySong(String song);
+
+    /**
+     * method for finding List SongPlayers by album
+     *@param album = album of SongPlayers
+     *@return List SongPlayers  with success parameters
+     * **/
+    List<SongPlayers> getSongPlayersByAlbum(String album);
 }

@@ -40,4 +40,9 @@ public class PeopleServiceImpl implements PeopleService {
     public People updPeople(People people) {
         return peopleDao.update(people);
     }
+
+    @Override
+    public List<PeopleDTO> getPeopleByHuman(String human) {
+        return peopleDTO.getPeopleDTOList(peopleDao.getPeopleByHuman(human));
+    }
 }

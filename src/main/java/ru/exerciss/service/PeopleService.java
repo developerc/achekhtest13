@@ -44,5 +44,12 @@ public interface PeopleService {
      * @return updated People
      */
     People updPeople(People people);
+
+    /**
+     * method for receiving all People by human
+     *
+     * @return all People by human
+     */
+    List<PeopleDTO> getPeopleByHuman(String human);
 }
 

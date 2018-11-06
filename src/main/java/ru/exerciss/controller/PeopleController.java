@@ -34,6 +34,12 @@ public class PeopleController {
         return peopleService.getPeopleById(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/getbyhuman/{human}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public List<PeopleDTO> getPeopleByHuman(@PathVariable(value = "human") String human){
+        return peopleService.getPeopleByHuman(human);
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
     @ResponseBody
     public People deletePeople(@RequestParam(value = "id") String id) {

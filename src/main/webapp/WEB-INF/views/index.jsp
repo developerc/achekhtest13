@@ -37,6 +37,43 @@
       var songPlayersArr = [];
       var albumArr = [];
 
+      var FindAllAlbums = function () {
+          var songSelect = document.getElementById('songSelect');
+          var songPlayerObj = {};
+          var albumArr = [];
+          $.ajax({
+              type: 'GET',
+              url: service + 'songplayers/getbysong/' + songSelect.value,
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var output = '';
+                  var stringData = JSON.stringify(result);
+                  var arrData = JSON.parse(stringData);
+                  console.log(arrData);
+                  output+= '<table class="table-row-cell" border="1">';
+                  output+= '<tr>';
+                  output+= '<th>song</'+'th>';
+                  output+= '<th>album</'+'th>';
+                  output+= '</' +'tr>';
+
+                  for (i in arrData) {
+                      songPlayerObj = arrData[i];
+                      output += '<tr>';
+                      output += '<th>' + songSelect.value + '</' + 'th>';
+                      output += '<th>' + songPlayerObj.album + '</' + 'th>';
+                      output += '</' + 'tr>';
+                  }
+
+                  output+= '</' +'table>';
+                  $('#tableAlbums').html(output);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
       var FindAllInstrumentalist = function () {
           var songSelect = document.getElementById('songSelect');
           var songPlayerObj = {};
