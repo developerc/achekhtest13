@@ -50,4 +50,14 @@ public class SongPlayersServiceImpl implements SongPlayersService {
     public List<SongPlayersDTO> getSongPlayersByAlbum(String album) {
         return songPlayersDTO.getSongPlayersDTOList(songPlayersDao.getSongPlayersByAlbum(album));
     }
+
+    @Override
+    public List<SongPlayersDTO> getSongPlayersByComposer(String composer) {
+        return songPlayersDTO.getSongPlayersDTOList(songPlayersDao.getSongPlayersByComposer(composer));
+    }
+
+    @Override
+    public List<SongPlayersDTO> getSongPlayersByPoet(String poet) {
+        return songPlayersDTO.getSongPlayersDTOList(songPlayersDao.getSongPlayersByPoet(poet));
+    }
 }

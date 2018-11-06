@@ -58,4 +58,18 @@ public interface SongPlayersService {
      * @return all SongPlayers by album
      */
     List<SongPlayersDTO> getSongPlayersByAlbum(String album);
+
+    /**
+     * method for receiving all SongPlayers by composer
+     *
+     * @return all SongPlayers by composer
+     */
+    List<SongPlayersDTO> getSongPlayersByComposer(String composer);
+
+    /**
+     * method for receiving all SongPlayers by poet
+     *
+     * @return all SongPlayers by poet
+     */
+    List<SongPlayersDTO> getSongPlayersByPoet(String poet);
 }

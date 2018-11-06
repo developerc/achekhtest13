@@ -24,4 +24,18 @@ public class SongPlayersDaoImpl extends BasicDaoImpl<SongPlayers> implements Son
         query.setParameter("Album", album);
         return query.getResultList();
     }
+
+    @Override
+    public List<SongPlayers> getSongPlayersByComposer(String composer) {
+        Query query = getSessionFactory().createQuery("SELECT a FROM SongPlayers as a WHERE (a.composer = :Composer )");
+        query.setParameter("Composer", composer);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<SongPlayers> getSongPlayersByPoet(String poet) {
+        Query query = getSessionFactory().createQuery("SELECT a FROM SongPlayers as a WHERE (a.poet = :Poet )");
+        query.setParameter("Poet", poet);
+        return query.getResultList();
+    }
 }

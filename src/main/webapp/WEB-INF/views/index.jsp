@@ -24,6 +24,11 @@
         <button type="button" onclick="FindAllInstrumentalist()">Find all instrumentalist</button>
         <button type="button" onclick="FindAllAlbums()">Find all albums</button>
       </form>
+      <form class="form-inline">
+        <label>Find by Human:</label>
+        <select id="humanSelect"></select>
+        <button type="button" onclick="FindAllRockGroups()">Find all rock groups</button>
+      </form>
     </div>
     <div class="panel-body" id="tableAlbums"></div>
   </div>
@@ -36,6 +41,44 @@
       var rgNumArr = [];
       var songPlayersArr = [];
       var albumArr = [];
+
+      var FindAllRockGroups = function () {
+          var humanSelect = document.getElementById('humanSelect');
+          var peopleObj = {};
+          var rockGroupObj = {};
+          $.ajax({
+              type: 'GET',
+              url: service + 'people/getbyhuman/' + humanSelect.value,
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var output = '';
+                  var stringData = JSON.stringify(result);
+                  var arrData = JSON.parse(stringData);
+                  console.log(arrData);
+                  output+= '<table class="table-row-cell" border="1">';
+                  output+= '<tr>';
+                  output+= '<th>human</'+'th>';
+                  output+= '<th>rock group</'+'th>';
+                  output+= '</' +'tr>';
+
+                  for (i in arrData) {
+                      peopleObj = arrData[i];
+                      rockGroupObj = peopleObj.rockGroups;
+                      output += '<tr>';
+                      output += '<th>' + humanSelect.value + '</' + 'th>';
+                      output += '<th>' + rockGroupObj.rockGroup + '</' + 'th>';
+                      output += '</' + 'tr>';
+                  }
+
+                  output+= '</' +'table>';
+                  $('#tableAlbums').html(output);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
 
       var FindAllAlbums = function () {
           var songSelect = document.getElementById('songSelect');
@@ -575,7 +618,32 @@
           });
       };
 
+      var SetSelectByHuman = function (){
+          console.log('SetSelectByHuman');
+          $.ajax({
+              type: 'GET',
+              url: service + 'people/all',
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var stringData = JSON.stringify(result);
+                  var arrData = JSON.parse(stringData);
+                  console.log(arrData);
+                  var arrData = JSON.parse(stringData);
+                  for (i in arrData) {
+                      var peopleObj = {};
+                      peopleObj = arrData[i];
+                      $("#humanSelect").append($('<'+'option value'+'="'+peopleObj.human+'">'+peopleObj.human+'</option>'))
+                  }
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
+
       SetSelectOptions();
+      SetSelectByHuman();
   </script>
   </body>
 </html>

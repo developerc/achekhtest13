@@ -46,6 +46,18 @@ public class SongPlayersController {
         return songPlayersService.getSongPlayersByAlbum(album);
     }
 
+    @RequestMapping(value = "/getbycomposer/{composer}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public List<SongPlayersDTO> getSongPlayersByComposer(@PathVariable(value = "composer") String composer){
+        return songPlayersService.getSongPlayersByComposer(composer);
+    }
+
+    @RequestMapping(value = "/getbypoet/{poet}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public List<SongPlayersDTO> getSongPlayersByPoet(@PathVariable(value = "poet") String poet){
+        return songPlayersService.getSongPlayersByPoet(poet);
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
     @ResponseBody
     public SongPlayers deleteSongPlayers(@RequestParam(value = "id") String id) {
