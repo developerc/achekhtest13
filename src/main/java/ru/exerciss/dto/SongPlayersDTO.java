@@ -16,7 +16,6 @@ public class SongPlayersDTO {
     private String poet;
     private String album;
     private List<PeopleDTO> songInstrumentalistList;
-//    private PeopleDTO songInstrumentalist;
 
     public SongPlayersDTO getSongPlayersDTObyId(SongPlayers songPlayers){
         songInstrumentalistList = new ArrayList<>();

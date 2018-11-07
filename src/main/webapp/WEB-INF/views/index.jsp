@@ -28,6 +28,7 @@
         <label>Find by Human:</label>
         <select id="humanSelect"></select>
         <button type="button" onclick="FindAllRockGroups()">Find all rock groups</button>
+        <button type="button" onclick="FindAllSongs()">Find all songs</button>
       </form>
     </div>
     <div class="panel-body" id="tableAlbums"></div>
@@ -41,6 +42,72 @@
       var rgNumArr = [];
       var songPlayersArr = [];
       var albumArr = [];
+      var peopleByHumanArr = [];
+
+      var HandlePeopleByHumanArr = function () {
+          var humanSelect = document.getElementById('humanSelect');
+          var humanObj = {};
+          var songPlayersListObj = {};
+          console.log('HandlePeopleByHumanArr');
+          output+= '<table class="table-row-cell" border="1">';
+          output+= '<tr>';
+          output+= '<th>human</'+'th>';
+          output+= '<th>song</'+'th>';
+          output+= '</' +'tr>';
+
+          /*for (i in peopleByHumanArr){
+              humanObj = peopleByHumanArr[i];
+              songPlayersListObj = humanObj.songPlayersList;
+              output += '<tr>';
+              output += '<th>' + humanSelect.value + '</' + 'th>';
+              output += '<th>' + songPlayersListObj.song + '</' + 'th>';
+              output += '</' + 'tr>';
+          }*/
+
+          output+= '</' +'table>';
+          $('#tableAlbums').html(output);
+      };
+
+      var FindAllSongs = function () {
+          var humanSelect = document.getElementById('humanSelect');
+          var peopleObj = {};
+          var songPlayersListArr = [];
+          var songPlayersListObj = {};
+          $.ajax({
+              type: 'GET',
+              url: service + 'people/getbyhuman/' + humanSelect.value,
+              dataType: 'json',
+              async: false,
+              success: function (result) {
+                  var output = '';
+                  var stringData = JSON.stringify(result);
+                  var arrData = JSON.parse(stringData);
+                  console.log(arrData);
+                  output+= '<table class="table-row-cell" border="1">';
+                  output+= '<tr>';
+                  output+= '<th>human</'+'th>';
+                  output+= '<th>song</'+'th>';
+                  output+= '</' +'tr>';
+
+                  for (i in arrData) {
+                      peopleObj = arrData[i];
+                      songPlayersListArr = peopleObj.songPlayersList;
+                      for (k in songPlayersListArr) {
+                          output += '<tr>';
+                          output += '<th>' + humanSelect.value + '</' + 'th>';
+                          output += '<th>' + songPlayersListArr[k].song + '</' + 'th>';
+                          output += '</' + 'tr>';
+                      }
+                  }
+
+                  output+= '</' +'table>';
+                  $('#tableAlbums').html(output);
+              },
+              error: function (jqXHR, testStatus, errorThrown) {
+                  $('#tableAlbums').html(JSON.stringify(jqXHR))
+              }
+          });
+      };
 
       var FindAllRockGroups = function () {
           var humanSelect = document.getElementById('humanSelect');
